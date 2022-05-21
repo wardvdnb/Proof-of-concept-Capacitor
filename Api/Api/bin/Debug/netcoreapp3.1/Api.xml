@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Api</name>
+    </assembly>
+    <members>
+        <member name="M:Api.Controllers.AccountController.CreateToken(Api.DTOs.LoginDTO)">
+            <summary>
+            Login
+            </summary>
+            <param name="model">the login details</param>
+        </member>
+        <member name="M:Api.Controllers.AccountController.Register(Api.DTOs.RegisterDTO)">
+            <summary>
+            Register a user
+            </summary>
+            <param name="model">the user details</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AccountController.CheckAvailableUserName(System.String)">
+            <summary>
+            Checks if an email is available as username
+            </summary>
+            <returns>true if the email is not registered yet</returns>
+            <param name="email">Email.</param>/
+        </member>
+        <member name="M:Api.Controllers.EngineerController.GetEngineer">
+            <summary>
+            Get the details of the authenticated engineer
+            </summary>
+            <returns>the engineer</returns>
+        </member>
+        <member name="M:Api.Controllers.TicketsController.GetTickets(System.String)">
+            <summary>
+            Get all tickets ordered by name
+            </summary>
+            <returns>array of tickets</returns>
+        </member>
+        <member name="M:Api.Controllers.TicketsController.GetTicket(System.Int32)">
+            <summary>
+            Get the ticket with given id
+            </summary>
+            <param name="id">the id of the ticket</param>
+            <returns>The ticket</returns>
+        </member>
+        <member name="M:Api.Controllers.TicketsController.GetTickets">
+            <summary>
+            Get favorite tickets of current user
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.TicketsController.PostTicket(Api.DTOs.TicketDTO)">
+            <summary>
+            Adds a new ticket
+            </summary>
+            <param name="ticket">the new ticket</param>
+        </member>
+        <member name="M:Api.Controllers.TicketsController.PutTicket(System.Int32,Api.Models.Ticket)">
+            <summary>
+            Modifies a ticket
+            </summary>
+            <param name="id">id of the ticket to be modified</param>
+            <param name="ticket">the modified ticket</param>
+        </member>
+        <member name="M:Api.Controllers.TicketsController.DeleteTicket(System.Int32)">
+            <summary>
+            Deletes a ticket
+            </summary>
+            <param name="id">the id of the ticket to be deleted</param>
+        </member>
+    </members>
+</doc>

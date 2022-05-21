@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RecipeApi</name>
+    </assembly>
+    <members>
+        <member name="M:RecipeApi.Controllers.AccountController.CreateToken(RecipeApi.DTOs.LoginDTO)">
+            <summary>
+            Login
+            </summary>
+            <param name="model">the login details</param>
+        </member>
+        <member name="M:RecipeApi.Controllers.AccountController.Register(RecipeApi.DTOs.RegisterDTO)">
+            <summary>
+            Register a user
+            </summary>
+            <param name="model">the user details</param>
+            <returns></returns>
+        </member>
+        <member name="M:RecipeApi.Controllers.AccountController.CheckAvailableUserName(System.String)">
+            <summary>
+            Checks if an email is available as username
+            </summary>
+            <returns>true if the email is not registered yet</returns>
+            <param name="email">Email.</param>/
+        </member>
+        <member name="M:RecipeApi.Controllers.CustomerController.GetCustomer">
+            <summary>
+            Get the details of the authenticated customer
+            </summary>
+            <returns>the customer</returns>
+        </member>
+        <member name="M:RecipeApi.Controllers.RecipesController.GetRecipes(System.String,System.String,System.String)">
+            <summary>
+            Get all recipes ordered by name
+            </summary>
+            <returns>array of recipes</returns>
+        </member>
+        <member name="M:RecipeApi.Controllers.RecipesController.GetRecipe(System.Int32)">
+            <summary>
+            Get the recipe with given id
+            </summary>
+            <param name="id">the id of the recipe</param>
+            <returns>The recipe</returns>
+        </member>
+        <member name="M:RecipeApi.Controllers.RecipesController.GetFavorites">
+            <summary>
+            Get favorite recipes of current user
+            </summary>
+        </member>
+        <member name="M:RecipeApi.Controllers.RecipesController.PostRecipe(RecipeApi.DTOs.RecipeDTO)">
+            <summary>
+            Adds a new recipe
+            </summary>
+            <param name="recipe">the new recipe</param>
+        </member>
+        <member name="M:RecipeApi.Controllers.RecipesController.PutRecipe(System.Int32,RecipeApi.Models.Recipe)">
+            <summary>
+            Modifies a recipe
+            </summary>
+            <param name="id">id of the recipe to be modified</param>
+            <param name="recipe">the modified recipe</param>
+        </member>
+        <member name="M:RecipeApi.Controllers.RecipesController.DeleteRecipe(System.Int32)">
+            <summary>
+            Deletes a recipe
+            </summary>
+            <param name="id">the id of the recipe to be deleted</param>
+        </member>
+        <member name="M:RecipeApi.Controllers.RecipesController.GetIngredient(System.Int32,System.Int32)">
+            <summary>
+            Get an ingredient for a recipe
+            </summary>
+            <param name="id">id of the recipe</param>
+            <param name="ingredientId">id of the ingredient</param>
+        </member>
+        <member name="M:RecipeApi.Controllers.RecipesController.PostIngredient(System.Int32,RecipeApi.DTOs.IngredientDTO)">
+            <summary>
+            Adds an ingredient to a recipe
+            </summary>
+            <param name="id">the id of the recipe</param>
+            <param name="ingredient">the ingredient to be added</param>
+        </member>
+    </members>
+</doc>
