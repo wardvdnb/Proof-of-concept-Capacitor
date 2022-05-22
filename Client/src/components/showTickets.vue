@@ -29,7 +29,6 @@
 
 <script>
 // Imports
-import { BCard, BCardText } from 'bootstrap-vue';
 import searchMixin from '../mixins/searchMixin';
 import axios from 'axios';
 

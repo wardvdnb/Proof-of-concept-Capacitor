@@ -7,8 +7,7 @@
 
 <script>
 // Imports
-import showTickets from './components/showTickets.vue';
-import header from './components/header.vue';
+import header from './components/appHeader.vue';
 
 export default {
     components: {

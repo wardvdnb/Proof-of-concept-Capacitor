@@ -5,15 +5,13 @@
         <p>Author: {{ ticket.author }}</p>
         <p>Categories:</p>
         <ul>
-            <li v-for="category in ticket.categories">{{ category }}</li>
+            <!-- <li v-for="category in ticket.categories">{{ category }}</li> -->
         </ul>
-        </div>
     </div>
 </template>
 
 <script>
 // Imports
-import searchMixin from '../mixins/searchMixin';
 
 export default {
     data () {

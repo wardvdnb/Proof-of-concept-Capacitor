@@ -15,7 +15,7 @@
             </div>
             <label>Author:</label>
             <select v-model="ticket.author">
-                <option v-for="author in authors">{{ author }}</option>
+                <!-- <option v-for="author in authors">{{ author }}</option> -->
             </select>
             <hr />
             <b-button variant="primary" v-on:click.prevent="post">Add Ticket</b-button>
