@@ -30,7 +30,10 @@
 <script>
 // Imports
 import searchMixin from '../mixins/searchMixin';
-import axios from 'axios';
+//import axios from 'axios';
+//import '@capacitor-community/http';
+//import { Plugins } from '@capacitor/core';
+import { Http } from '@capacitor-community/http';
 
 export default {
     data () {
@@ -40,16 +43,23 @@ export default {
         }
     },
     created() {
-       axios.get('https://localhost:5001/api/Tickets').then(
-            data => {
-            var ticketsArray = data.data;
-            // for (let ticket in data.data){
-            //     console.log(ticket);
-            //     ticketsArray.push(ticket);
-            // }
-            this.tickets = ticketsArray;
-            console.log(this.tickets);
-        });
+    //    axios.get('https://localhost:5001/api/Tickets').then(
+    //         data => {
+    //         var ticketsArray = data.data;
+    //         // for (let ticket in data.data){
+    //         //     console.log(ticket);
+    //         //     ticketsArray.push(ticket);
+    //         // }
+    //         this.tickets = ticketsArray;
+    //         console.log(this.tickets);
+    //     });
+        Http.request({
+            method: 'GET',
+            url: 'http://192.168.0.209:5001/api/Tickets',
+        })
+        .then(({ data }) => {
+            this.tickets = data;
+        })
     },
     mixins: [searchMixin]
 }
