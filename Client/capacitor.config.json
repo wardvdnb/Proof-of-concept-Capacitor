@@ -2,6 +2,5 @@
   "appId": "com.example.capacitor.poc",
   "appName": "capacitor-poc",
   "webDir": "dist",
-  "bundledWebRuntime": false,
-  "server": { "androidScheme": "http", "allowNavigation": [ "https://localhost:5001/api/Tickets", "https://localhost:5001/api", "https://localhost:5001", "http://localhost/", "http://localhost" ] }
+  "bundledWebRuntime": false
 }

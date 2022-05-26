@@ -31,8 +31,8 @@ namespace Api.Data
                 //engineer2.AddTicket(_dbContext.Tickets.First());
                 await CreateUser(engineer2.Email, "P@ssword1111");
                 _dbContext.Tickets.AddRange(
-                    new Ticket { Title = "Install firewall", Created = DateTime.Now, Engineer = engineer },
-                    new Ticket { Title = "Repair screen", Created = DateTime.Now, Engineer = engineer2 }
+                    new Ticket { Title = "Install firewall", Created = DateTime.Now, Engineer = engineer, Description = "Set up a firewall for client X, the computers run on Windows 7." },
+                    new Ticket { Title = "Repair screen", Created = DateTime.Now, Engineer = engineer2, Description = "Broken laptop screen, main cause is most likely a broken display controller." }
                 );
                 _dbContext.SaveChanges();
             }

@@ -26,12 +26,6 @@ namespace Api.Data.Repositories
             return _tickets.Include(r => r.Engineer).SingleOrDefault(r => r.Id == id);
         }
 
-        public bool TryGetTicket(int id, out Ticket ticket)
-        {
-            ticket = _context.Tickets.Include(t => t.Engineer).FirstOrDefault(t => t.Id == id);
-            return ticket != null;
-        }
-
         public void Add(Ticket ticket)
         {
             _tickets.Add(ticket);

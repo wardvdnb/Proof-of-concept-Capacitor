@@ -113,7 +113,8 @@ namespace Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TicketDataInitializer ticketDataInitializer)
         {
             app.UseCors(
-               builder => builder.AllowAnyOrigin()
+               builder => 
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
            );
 
 

@@ -24,7 +24,7 @@
             <returns>true if the email is not registered yet</returns>
             <param name="email">Email.</param>/
         </member>
-        <member name="M:Api.Controllers.EngineerController.GetEngineer">
+        <member name="M:Api.Controllers.EngineerController.GetEngineers">
             <summary>
             Get the details of the authenticated engineer
             </summary>
@@ -42,11 +42,6 @@
             </summary>
             <param name="id">the id of the ticket</param>
             <returns>The ticket</returns>
-        </member>
-        <member name="M:Api.Controllers.TicketsController.GetTickets">
-            <summary>
-            Get favorite tickets of current user
-            </summary>
         </member>
         <member name="M:Api.Controllers.TicketsController.PostTicket(Api.DTOs.TicketDTO)">
             <summary>

@@ -1,9 +1,9 @@
 <template>
-    <div id="show-tickets" class="px-3">
+    <div id="show-tickets" class="px-3 mb-4">
         <h1>All Tickets</h1>
         <input type="text" v-model="search" placeholder="search tickets" />
         
-        <div :key="ticket.id" v-for="ticket in tickets" class="single-ticket">
+        <div :key="ticket.id" v-for="ticket in filteredTickets" class="single-ticket">
             
             <b-card
                 border-variant="dark"
@@ -16,24 +16,21 @@
             >
 
                 <b-card-text>
-                    Created: {{ticket.created | formatDate}}
+                    <b>Created:</b> {{ticket.created | formatDate}}
                 </b-card-text>
                 <b-card-text>
-                    Description: {{ticket.title}}
+                    <b>Description:</b> {{ticket.description}}
                 </b-card-text>
                 <b-link class="card-link" :to="'/ticket/' + ticket.id">View Ticket</b-link>
             </b-card>
         </div>
-    </div>
+    </div >
 </template>
 
 <script>
 // Imports
 import searchMixin from '../mixins/searchMixin';
-//import axios from 'axios';
-//import '@capacitor-community/http';
-//import { Plugins } from '@capacitor/core';
-import { Http } from '@capacitor-community/http';
+import axios from 'axios';
 
 export default {
     data () {
@@ -43,23 +40,9 @@ export default {
         }
     },
     created() {
-    //    axios.get('https://localhost:5001/api/Tickets').then(
-    //         data => {
-    //         var ticketsArray = data.data;
-    //         // for (let ticket in data.data){
-    //         //     console.log(ticket);
-    //         //     ticketsArray.push(ticket);
-    //         // }
-    //         this.tickets = ticketsArray;
-    //         console.log(this.tickets);
-    //     });
-        Http.request({
-            method: 'GET',
-            url: 'http://192.168.0.209:5001/api/Tickets',
-        })
-        .then(({ data }) => {
-            this.tickets = data;
-        })
+        axios.get(`${process.env.VUE_APP_API}/Tickets`).then(
+            data => {this.tickets = data.data;}
+        );
     },
     mixins: [searchMixin]
 }

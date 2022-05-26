@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Api.DTOs;
 using Api.Models;
+using System.Collections.Generic;
 
 namespace Api.Controllers
 {
@@ -24,11 +25,18 @@ namespace Api.Controllers
         /// Get the details of the authenticated engineer
         /// </summary>
         /// <returns>the engineer</returns>
-        [HttpGet()]
-        public ActionResult<EngineerDTO> GetEngineer()
+        //[HttpGet()]
+        //public ActionResult<EngineerDTO> GetEngineer()
+        //{
+        //    Engineer engineer = _engineerRepository.GetBy(User.Identity.Name);
+        //    return new EngineerDTO(engineer);
+        //}
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IEnumerable<Engineer> GetEngineers()
         {
-            Engineer engineer = _engineerRepository.GetBy(User.Identity.Name);
-            return new EngineerDTO(engineer);
+            return _engineerRepository.GetAll();
         }
     }
 } 

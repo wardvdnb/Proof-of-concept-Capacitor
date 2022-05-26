@@ -450,3 +450,4 @@ C:\Users\Ward\Desktop\Proof-of-concept Capacitor\Api\Api\obj\Debug\netcoreapp3.1
 C:\Users\Ward\Desktop\Proof-of-concept Capacitor\Api\Api\obj\Debug\netcoreapp3.1\Api.xml
 C:\Users\Ward\Desktop\Proof-of-concept Capacitor\Api\Api\obj\Debug\netcoreapp3.1\Api.pdb
 C:\Users\Ward\Desktop\Proof-of-concept Capacitor\Api\Api\obj\Debug\netcoreapp3.1\Api.genruntimeconfig.cache
+C:\Users\Ward\Desktop\Proof-of-concept Capacitor\Api\Api\obj\Debug\netcoreapp3.1\Api.csproj.AssemblyReference.cache

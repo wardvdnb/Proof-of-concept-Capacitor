@@ -35,7 +35,7 @@ namespace Api.Models
         #region Methods
         public void AddTicket(Ticket ticket)
         {
-            Tickets.Add(new Ticket() { Id = ticket.Id, Title = ticket.Title, Engineer = this });
+            Tickets.Add(new Ticket() { Id = ticket.Id, Title = ticket.Title, Description = ticket.Description, Engineer = this });
         }
         #endregion
     }
