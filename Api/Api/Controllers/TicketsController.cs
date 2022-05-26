@@ -1,17 +1,13 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Api.DTOs;
 using Api.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Api.Controllers
 {
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class TicketsController : ControllerBase
     {
@@ -30,7 +26,6 @@ namespace Api.Controllers
         /// </summary>
         /// <returns>array of tickets</returns>
         [HttpGet]
-        [AllowAnonymous]
         public IEnumerable<Ticket> GetTickets(string title = null)
         {
             if (string.IsNullOrEmpty(title))
