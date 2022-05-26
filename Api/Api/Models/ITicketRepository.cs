@@ -5,7 +5,6 @@ namespace Api.Models
     public interface ITicketRepository
     {
         Ticket GetBy(int id);
-        bool TryGetTicket(int id, out Ticket ticket);
         IEnumerable<Ticket> GetAll();
         IEnumerable<Ticket> GetBy(string title = null);
         void Add(Ticket ticket);

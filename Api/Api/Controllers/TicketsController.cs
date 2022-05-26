@@ -1,17 +1,13 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Api.DTOs;
 using Api.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Api.Controllers
 {
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class TicketsController : ControllerBase
     {
@@ -30,7 +26,6 @@ namespace Api.Controllers
         /// </summary>
         /// <returns>array of tickets</returns>
         [HttpGet]
-        [AllowAnonymous]
         public IEnumerable<Ticket> GetTickets(string title = null)
         {
             if (string.IsNullOrEmpty(title))
@@ -52,16 +47,6 @@ namespace Api.Controllers
             return ticket;
         }
 
-        /// <summary>
-        /// Get favorite tickets of current user
-        /// </summary>
-        [HttpGet("Favorites")]
-        public IEnumerable<Ticket> GetTickets()
-        {
-            Engineer engineer = _engineerRepository.GetBy(User.Identity.Name);
-            return engineer.Tickets;
-        }
-
         // POST: api/Tickets
         /// <summary>
         /// Adds a new ticket
@@ -70,7 +55,7 @@ namespace Api.Controllers
         [HttpPost]
         public ActionResult<Ticket> PostTicket(TicketDTO ticket)
         {
-            Ticket ticketToCreate = new Ticket() { Title = ticket.Title };
+            Ticket ticketToCreate = new Ticket() { Title = ticket.Title, Description = ticket.Description };
             foreach (var e in ticket.Engineer)
                 ticketToCreate.Engineer = new Engineer(e.FirstName, e.LastName, e.Email);
             _ticketRepository.Add(ticketToCreate);
@@ -102,7 +87,6 @@ namespace Api.Controllers
         /// Deletes a ticket
         /// </summary>
         /// <param name="id">the id of the ticket to be deleted</param>
-
         [HttpDelete("{id}")]
         public IActionResult DeleteTicket(int id)
         {
@@ -115,41 +99,5 @@ namespace Api.Controllers
             _ticketRepository.SaveChanges();
             return NoContent();
         }
-
-        ///// <summary>
-        ///// Get an ingredient for a ticket
-        ///// </summary>
-        ///// <param name="id">id of the ticket</param>
-        ///// <param name="ingredientId">id of the ingredient</param>
-        //[HttpGet("{id}/ingredients/{ingredientId}")]
-        //public ActionResult<Ingredient> GetIngredient(int id, int ingredientId)
-        //{
-        //    if (!_ticketRepository.TryGetTicket(id, out var ticket))
-        //    {
-        //        return NotFound();
-        //    }
-        //    Ingredient ingredient = ticket.GetIngredient(ingredientId);
-        //    if (ingredient == null)
-        //        return NotFound();
-        //    return ingredient;
-        //}
-
-        ///// <summary>
-        ///// Adds an ingredient to a ticket
-        ///// </summary>
-        ///// <param name="id">the id of the ticket</param>
-        ///// <param name="ingredient">the ingredient to be added</param>
-        //[HttpPost("{id}/ingredients")]
-        //public ActionResult<Ingredient> PostIngredient(int id, IngredientDTO ingredient)
-        //{
-        //    if (!_ticketRepository.TryGetTicket(id, out var ticket))
-        //    {
-        //        return NotFound();
-        //    }
-        //    var ingredientToCreate = new Ingredient(ingredient.Name, ingredient.Amount, ingredient.Unit);
-        //    ticket.AddIngredient(ingredientToCreate);
-        //    _ticketRepository.SaveChanges();
-        //    return CreatedAtAction("GetIngredient", new { id = ticket.Id, ingredientId = ingredientToCreate.Id }, ingredientToCreate);
-        //}
     }
 }

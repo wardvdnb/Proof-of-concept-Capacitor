@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Api.Models
 {
@@ -12,6 +10,8 @@ namespace Api.Models
 
         [Required]
         public string Title { get; set; }
+
+        public string Description { get; set; }
 
         public DateTime Created { get; set; }
 
@@ -26,9 +26,10 @@ namespace Api.Models
             Created = DateTime.Now;
         }
 
-        public Ticket(string title) : this()
+        public Ticket(string title, string description) : this()
         {
             Title = title;
+            Description = description;
         }
         #endregion
 

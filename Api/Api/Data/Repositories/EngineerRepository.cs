@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Api.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Api.Data.Repositories
 {
@@ -13,6 +14,11 @@ namespace Api.Data.Repositories
         {
             _context = dbContext;
             _engineers = dbContext.Engineers;
+        }
+
+        public IEnumerable<Engineer> GetAll()
+        {
+            return _engineers.Include(r => r.Tickets).ToList();
         }
 
         public Engineer GetBy(string email)

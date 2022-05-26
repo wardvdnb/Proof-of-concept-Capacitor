@@ -1,27 +1,38 @@
 <template>
     <div id="add-ticket">
         <h2>Add a New Ticket</h2>
-        <form v-if="!submitted">
-            <label>Ticket Title:</label>
-            <input type="text" v-model.lazy="ticket.title" required />
-            <label>Ticket Content:</label>
-            <textarea v-model.lazy.trim="ticket.content"></textarea>
-            <div id="checkboxes">
-                <p>Ticket Categories:</p>
-                <label>Remote</label>
-                <input type="checkbox" value="remote" v-model="ticket.categories" />
-                <label>Onsite</label>
-                <input type="checkbox" value="onsite" v-model="ticket.categories" />
-            </div>
-            <label>Author:</label>
-            <select v-model="ticket.author">
-                <option v-for="author in authors">{{ author }}</option>
-            </select>
-            <hr />
-            <b-button variant="primary" v-on:click.prevent="post">Add Ticket</b-button>
-        </form>
-        <div v-if="submitted">
-            <h3>Thanks for adding your post</h3>
+        <div>
+            <b-form @submit="onSubmit" @reset="onReset" v-if="show" enctype="multipart/form-data">
+                <b-form-group id="input-group-1" class="mb-2" label="Title:" label-for="input-1">
+                    <b-form-input
+                    id="input-1"
+                    v-model="form.title"
+                    placeholder="Enter a title"
+                    required
+                    ></b-form-input>
+                </b-form-group>
+
+                <b-form-group id="input-group-2" class="mb-2" label="Description:" label-for="input-2">
+                    <b-form-textarea
+                    id="input-2"
+                    v-model="form.description"
+                    placeholder="Enter a description"
+                    required
+                    ></b-form-textarea>
+                </b-form-group>
+
+                <b-form-group id="input-group-3" class="mb-3" label="Engineer:" label-for="input-3">
+                    <b-form-select
+                    id="input-3"
+                    v-model="form.engineer"
+                    :options="engineers"
+                    required
+                    ></b-form-select>
+                </b-form-group>
+
+                <b-button id="submitBtn" type="submit" class="d-inline mr-1 p-2" variant="primary">Submit</b-button>
+                <b-button type="reset" class="d-inline ml-1 p-2" variant="danger">Reset</b-button>
+            </b-form>
         </div>
     </div>
 </template>
@@ -33,41 +44,67 @@ import axios from 'axios';
 export default {
     data () {
         return {
-            ticket: {
+            form: {
                 title: '',
-                content: '',
-                categories: [],
-                author: ''
+                description: '',
+                engineer: null,
             },
-            authors: ['The Net Ninja', 'The Angular Avenger', 'The Vue Vindicator'],
-            submitted: false
+            engineers: [],
+            submitted: false,
+            show: true
         }
     },
     methods: {
-        post: function(){
-            this.$http.post('https://nn-vue-playlist.firebaseio.com/posts.json', this.ticket).then(function(data){
-                console.log(data);
-                this.submitted = true;
-            });
-        }
+        onSubmit(event) {
+            event.preventDefault()
+            axios.post(`${process.env.VUE_APP_API}/Tickets`, this.form).then(
+                () => this.$router.push('/')
+            );
+        },
+        onReset(event) {
+            event.preventDefault()
+            this.form.title = ''
+            this.form.description = ''
+            this.form.engineer = null
+            // Trick to reset/clear native browser form validation state
+            this.show = false
+            this.$nextTick(() => {
+            this.show = true
+            })
+        },
     },
     created(){
-        axios.get('https://localhost:5001/api/Tickets').then(
-            function(data){
-            console.log(data.data);
-        });
+        axios.get(`${process.env.VUE_APP_API}/Engineer`).then(
+            data => {
+                let engineers = data.data;
+                this.engineers = [
+                    { text: 'Select One', value: null }, 
+                    ...engineers.map(engineer => 
+                    ({ 
+                        text: `${engineer.firstName} ${engineer.lastName}`, 
+                        value: ([{firstName: engineer.firstName,
+                                lastName: engineer.lastName,
+                                email: engineer.email,
+                                tickets: engineer.tickets}])
+                    }))
+                ];
+            }
+        );
     }
 }
 </script>
 
 <style scoped>
-#add-ticket *{
+ #add-ticket *{
     box-sizing: border-box;
 }
 #add-ticket{
     margin: 20px auto;
     max-width: 600px;
     padding: 20px;
+}
+#submitBtn{
+    margin-right: 0.5em;
 }
 label{
     display: block;
@@ -76,38 +113,6 @@ label{
 input[type="text"], textarea, select{
     display: block;
     width: 100%;
-    padding: 8px;
-}
-textarea{
-    height:200px;
-}
-#preview{
-    padding: 10px 20px;
-    border: 1px dotted #ccc;
-    margin: 30px 0;
-}
-h3{
-    margin-top: 10px;
-}
-#checkboxes input{
-    display: inline-block;
-    margin-right: 10px;
-}
-#checkboxes label{
-    display: inline-block;
-    margin-top: 0;
-}
-hr{
-    display: none;
-}
-
-button{
-    display: block;
-    margin: 20px 0;
-    border: 0;
-    padding: 12px;
-    border-radius: 4px;
-    font-size: 18px;
-    cursor: pointer;
+    padding: 6px;
 }
 </style>

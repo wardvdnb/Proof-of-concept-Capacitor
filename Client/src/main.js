@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import VueResource from 'vue-resource'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
@@ -9,7 +8,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './global-filters'
 
 // Use packages
-Vue.use(VueResource);
 Vue.use(VueRouter);
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)
