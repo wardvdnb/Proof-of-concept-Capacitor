@@ -2,5 +2,10 @@
 	"appId": "com.example.capacitor.poc",
 	"appName": "capacitor-poc",
 	"webDir": "dist",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"plugins": {
+		"CapacitorUpdater": {
+			"autoUpdate": true
+		}
+	}
 }
