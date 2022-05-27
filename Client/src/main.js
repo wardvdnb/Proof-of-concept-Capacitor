@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { CapacitorUpdater } from '@capgo/capacitor-updater'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Routes from './routes'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './global-filters'
+
+CapacitorUpdater.notifyAppReady()
 
 // Use packages
 Vue.use(VueRouter);

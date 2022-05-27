@@ -2,5 +2,9 @@
 	{
 		"pkg": "@capacitor-community/http",
 		"classpath": "com.getcapacitor.plugin.http.Http"
+	},
+	{
+		"pkg": "@capgo/capacitor-updater",
+		"classpath": "ee.forgr.capacitor_updater.CapacitorUpdaterPlugin"
 	}
 ]
