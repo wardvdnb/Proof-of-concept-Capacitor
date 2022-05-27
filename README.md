@@ -2,7 +2,7 @@
 
 ## Installation
 1. Add a .env file in the root of your client folder
-2. Add the following line: VUE_APP_API=http://<your_ip_adress>:5051/api 
+2. Add the following line: VUE_APP_API=http://<your_ip_adress>:5001/api 
    (you can find your external ip address by running "npm run serve" on visual studio code)
 
 ```console
