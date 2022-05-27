@@ -8,6 +8,7 @@
 <script>
 // Imports
 import header from './components/appHeader.vue';
+import { CapacitorUpdater } from '@capgo/capacitor-updater'
 
 export default {
     components: {
@@ -17,6 +18,9 @@ export default {
         return {
 
         }
+    },
+    created(){
+        CapacitorUpdater.notifyAppReady()
     },
     methods: {
 
